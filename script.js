@@ -2,10 +2,15 @@
 
 let arrayOfCountries = [];
 // let arrayOfSlugs = []
+const URL = "https://api.covid19api.com/live/country"
 
 function setInitialConditions() {
   $('#selectCountryForm').show();
   console.log("***setInitialConditions ran***")
+}
+
+function clearResults() {
+  $('#countries').empty();
 }
 
 function getListOfCountries() {
@@ -16,6 +21,7 @@ function getListOfCountries() {
 }
 
 function createSelectElement(responseJson) {
+  clearResults();
   // console.log(responseJson);
   // let arrayOfCountries = [];
   for (let i = 0; i < responseJson.length; i++) {
@@ -53,24 +59,13 @@ function createSelectElement(responseJson) {
 
   function getCountryData() {
     console.log($("#countries").val());
+    console.log($("#dataType").val());
+    console.log($("#afterDate").val());
+    fetch(URL + '/' + `${$("#countries").val()}` + '/status/' + `${$("#dataType").val()}` + '/date/' + `${$("#afterDate").val()}` + 'T00:00:00Z')
+    .then(response => response.json())
+    .then(responseJson => console.log(responseJson))
     console.log('***getCountryData ran***');
   }
-
-
-
-
-
-// }
- 
-
-  // let listOfSlugs = [];
-  // for (let i = 0; i < responseJson.length; i++) {
-  //   listOfSlugs.push(responseJson[i].Slug);
-  // }
-  // listOfSlugs.sort();
-  // console.log(listOfSlugs);  
-
-
 
 
 

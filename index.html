@@ -11,6 +11,15 @@
 
   <form id="selectCountryForm">
     <select id="countries" name="countries" required></select>
+    <br><br><br>
+    <select id="dataType" name="dataType" required>
+      <option value="confirmed">confirmed cases</option>
+      <option value="recovered">recovered cases</option>
+      <option value="deaths">cases ending in death</option>
+    </select>
+    <br><br><br>
+    <label for="afterDate">From:</label>
+    <input type="date" name="afterDate" id="afterDate" value="YYYY-MM-DD" required>
     <input type="submit" id="submitButton" value="Submit">
   </form>
 
