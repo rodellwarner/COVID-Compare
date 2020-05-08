@@ -20,14 +20,16 @@ function createSelectElement(responseJson) {
     for (let i = 0; i < arrayOfCountries.length; i++) {
       $('#countries').append(`<option value="volvo">${arrayOfCountries[i]}</option>`);
     }
+    fetch('https://api.covid19api.com/countries')
+    .then(response => response.json())
+    .then(responseJson => console.log(responseJson))
+    }
+
+    turnArrayOfCountriesIntoListOfCountries(arrayOfCountries);
+
   }
 
-  turnArrayOfCountriesIntoListOfCountries(arrayOfCountries);
-
-
-  
-
-  
+ 
 
   // let listOfSlugs = [];
   // for (let i = 0; i < responseJson.length; i++) {
@@ -35,7 +37,7 @@ function createSelectElement(responseJson) {
   // }
   // listOfSlugs.sort();
   // console.log(listOfSlugs);  
-}
+
 
 
 
