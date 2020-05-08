@@ -1,10 +1,4 @@
-
-
-
-
-
-
-
+"use strict"
 
 function getListOfCountries() {
   fetch('https://api.covid19api.com/countries')
@@ -22,13 +16,18 @@ function createSelectElement(responseJson) {
   arrayOfCountries.sort();
   console.log(arrayOfCountries);
 
+  function turnArrayOfCountriesIntoListOfCountries(arrayOfCountries) {
+    for (let i = 0; i < arrayOfCountries.length; i++) {
+      $('#countries').append(`<option value="volvo">${arrayOfCountries[i]}</option>`);
+    }
+  }
 
-
+  turnArrayOfCountriesIntoListOfCountries(arrayOfCountries);
 
 
   
 
-  $('#countries').append(`<option value="volvo">${arrayOfCountries[0]}</option>`);
+  
 
   // let listOfSlugs = [];
   // for (let i = 0; i < responseJson.length; i++) {
