@@ -14,21 +14,28 @@ function getListOfCountries() {
 }
 
 function createSelectElement(responseJson) {
-  // $('#countries')
-  // console.log(responseJson);
-  let listOfCountries = [];
+  console.log(responseJson);
+  let arrayOfCountries = [];
   for (let i = 0; i < responseJson.length; i++) {
-    listOfCountries.push(responseJson[i].Country);
+    arrayOfCountries.push(responseJson[i].Country);
   }
-  listOfCountries.sort();
-  console.log(listOfCountries);
+  arrayOfCountries.sort();
+  console.log(arrayOfCountries);
 
-  let listOfSlugs = [];
-  for (let i = 0; i < responseJson.length; i++) {
-    listOfSlugs.push(responseJson[i].Slug);
-  }
-  listOfSlugs.sort();
-  console.log(listOfSlugs);  
+
+
+
+
+  
+
+  $('#countries').append(`<option value="volvo">${arrayOfCountries[0]}</option>`);
+
+  // let listOfSlugs = [];
+  // for (let i = 0; i < responseJson.length; i++) {
+  //   listOfSlugs.push(responseJson[i].Slug);
+  // }
+  // listOfSlugs.sort();
+  // console.log(listOfSlugs);  
 }
 
 
