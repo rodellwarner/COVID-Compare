@@ -4,6 +4,11 @@ let arrayOfCountries = [];
 // let arrayOfSlugs = []
 const URL = "https://api.covid19api.com/live/country"
 
+const graphURL = "https://quickchart.io/chart?c={type:'line',"
+
+let graphDataDates = [];
+let graphDataSetsCases = [];
+
 function setInitialConditions() {
   $('#selectCountryForm').show();
   console.log("***setInitialConditions ran***")
@@ -12,6 +17,10 @@ function setInitialConditions() {
 function clearResults() {
   $('#countries').empty();
 }
+
+function clearGraph() {
+  $('#graphDisplay').empty();
+  }
 
 function getListOfCountries() {
   fetch('https://api.covid19api.com/countries')
@@ -22,6 +31,7 @@ function getListOfCountries() {
 
 function createSelectElement(responseJson) {
   clearResults();
+  clearGraph();
   // console.log(responseJson);
   // let arrayOfCountries = [];
   for (let i = 0; i < responseJson.length; i++) {
@@ -53,19 +63,36 @@ function createSelectElement(responseJson) {
   function handleSubmitForm() {
     $('#selectCountryForm').submit(function() {
       event.preventDefault();
-      getCountryData();
+      getCovidData();
+      // displayGraph();
     });
   }
 
-  function getCountryData() {
+  function getCovidData() {
     console.log($("#countries").val());
     console.log($("#dataType").val());
     console.log($("#afterDate").val());
     fetch(URL + '/' + `${$("#countries").val()}` + '/status/' + `${$("#dataType").val()}` + '/date/' + `${$("#afterDate").val()}` + 'T00:00:00Z')
     .then(response => response.json())
-    .then(responseJson => console.log(responseJson))
-    console.log('***getCountryData ran***');
+    // .then(responseJsonCases => console.log(responseJsonCases))
+    .then(responseJsonCases => aggregateGraphInfo(responseJsonCases))
+    console.log('***getCovidData ran***');
   }
+
+  function aggregateGraphInfo(responseJsonCases) {
+    console.log(responseJsonCases);
+    for (let k = 0; k < responseJsonCases.length; k++) {
+      graphDataDates.push(responseJsonCases[k].Date);
+      graphDataSetsCases.push(responseJsonCases[k].Confirmed);
+    }
+    console.log(graphDataDates);
+    console.log(graphDataSetsCases);
+  }
+
+  // function displayGraph() {}
+  //   fetch(graphURL + '')
+  // }
+
 
 
 
