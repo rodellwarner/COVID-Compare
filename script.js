@@ -18,15 +18,10 @@ function createSelectElement(responseJson) {
 
   function turnArrayOfCountriesIntoListOfCountries(arrayOfCountries) {
     for (let i = 0; i < arrayOfCountries.length; i++) {
-      $('#countries').append(`<option value="volvo">${arrayOfCountries[i]}</option>`);
+      $('#countries').append(`<option value="${arrayOfCountries[i]}">${arrayOfCountries[i]}</option>`);
     }
-    fetch('https://api.covid19api.com/countries')
-    .then(response => response.json())
-    .then(responseJson => console.log(responseJson))
     }
-
     turnArrayOfCountriesIntoListOfCountries(arrayOfCountries);
-
   }
 
  
