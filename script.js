@@ -4,7 +4,7 @@ let arrayOfCountries = [];
 // let arrayOfSlugs = []
 const URL = "https://api.covid19api.com/live/country"
 
-const graphURL = "https://quickchart.io/chart?c={type:'line',"
+const graphURL = "https://quickchart.io/chart?c={type:'line',data:{labels:"
 
 let graphDataDates = [];
 let graphDataSetsCases = [];
@@ -64,7 +64,7 @@ function createSelectElement(responseJson) {
     $('#selectCountryForm').submit(function() {
       event.preventDefault();
       getCovidData();
-      // displayGraph();
+      displayGraph();
     });
   }
 
@@ -83,15 +83,20 @@ function createSelectElement(responseJson) {
     console.log(responseJsonCases);
     for (let k = 0; k < responseJsonCases.length; k++) {
       graphDataDates.push(responseJsonCases[k].Date);
-      graphDataSetsCases.push(responseJsonCases[k].Confirmed);
+    }
+    for (let l = 0; l < responseJsonCases.length; l++) {
+    graphDataSetsCases.push(responseJsonCases[l].Confirmed);
     }
     console.log(graphDataDates);
     console.log(graphDataSetsCases);
   }
 
-  // function displayGraph() {}
-  //   fetch(graphURL + '')
-  // }
+  function displayGraph() {
+    console.log(graphDataDates.toString());
+    console.log(graphDataSetsCases.toString());
+    
+    // console.log(graphURL + graphDataDates);
+  }
 
 
 
