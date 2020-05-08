@@ -1,10 +1,10 @@
 "use strict"
 
 let arrayOfCountries = [];
-let arrayOfSlugs = []
+// let arrayOfSlugs = []
 
 function setInitialConditions() {
-  $('#selectCountry').show();
+  $('#selectCountryForm').show();
   console.log("***setInitialConditions ran***")
 }
 
@@ -20,7 +20,7 @@ function createSelectElement(responseJson) {
   // let arrayOfCountries = [];
   for (let i = 0; i < responseJson.length; i++) {
     arrayOfCountries.push(responseJson[i].Country);
-    arrayOfSlugs.push(responseJson[i].Slug);
+    // arrayOfSlugs.push(responseJson[i].Slug);
   }
   arrayOfCountries.sort();
   console.log(arrayOfCountries);
@@ -45,11 +45,15 @@ function createSelectElement(responseJson) {
 
  
   function handleSubmitForm() {
-    $('selectCountry').submit(function() {
-      // event.preventDefault();
-      console.log('***handleSubmit ran***');
-      // $('selectcountry').hide();
+    $('#selectCountryForm').submit(function() {
+      event.preventDefault();
+      getCountryData();
     });
+  }
+
+  function getCountryData() {
+    console.log($("#countries").val());
+    console.log('***getCountryData ran***');
   }
 
 
