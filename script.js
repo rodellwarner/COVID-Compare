@@ -10,7 +10,6 @@ let graphDataSetsCases = [];
 
 function setInitialConditions() {
   $('#selectCountryForm').show();
-  console.log("***setInitialConditions ran***")
 }
 
 function clearResults() {
@@ -43,26 +42,9 @@ function getListOfCountries() {
 function createSelectElement(responseJson) {
   clearResults();
   clearGraph();
-  // for (let i = 0; i < responseJson.length; i++) {
-  //   arrayOfCountries.push(responseJson[i].Country);
-  // }
-  // arrayOfCountries.sort();
-  // console.log(arrayOfCountries);
-
-  // function turnArrayOfCountriesIntoListOfCountries(arrayOfCountries) {
-  //   function searchForSlug(nameKey, myArray) {
-  //     for (let j = 0; j < myArray.length; j++) {
-  //       if (myArray[j].Country === nameKey) {
-  //         return myArray[j].Slug;
-  //       }
-  //     }
-  //   }
-  //   for (let i = 0; i < arrayOfCountries.length; i++) {
-  //     let countryValue = searchForSlug(arrayOfCountries[i], responseJson);
-  //     $('#countries').append(`<option value="${countryValue}">${arrayOfCountries[i]}</option>`);
-  //   }
-  //   }
-  //   turnArrayOfCountriesIntoListOfCountries(arrayOfCountries);
+  const populateListOfCountries = responseJson.forEach(element => {
+    $('#countries').append(`<option value="${element.Slug}">${element.Country}</option>`);
+  });
   }
 
  
@@ -75,14 +57,10 @@ function createSelectElement(responseJson) {
   }
 
   function getCovidData() {
-    console.log($("#countries").val());
-    console.log($("#dataType").val());
-    console.log($("#afterDate").val());
     fetch(URL + '/' + `${$("#countries").val()}` + '/status/' + `${$("#dataType").val()}` + '/date/' + `${$("#afterDate").val()}` + 'T00:00:00Z')
     .then(response => response.json())
-    // .then(responseJsonCases => console.log(responseJsonCases))
-    .then(responseJsonCases => aggregateGraphInfo(responseJsonCases))
-    console.log('***getCovidData ran***');
+    .then(responseJsonCases => console.log(responseJsonCases))
+    // .then(responseJsonCases => aggregateGraphInfo(responseJsonCases))
   }
 
   function aggregateGraphInfo(responseJsonCases) {
