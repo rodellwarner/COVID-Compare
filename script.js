@@ -1,7 +1,6 @@
 "use strict"
 
 let arrayOfCountries = [];
-// let arrayOfSlugs = []
 const URL = "https://api.covid19api.com/live/country"
 
 const graphURL = "https://quickchart.io/chart?c={type:'line',data:{labels:"
@@ -44,31 +43,26 @@ function getListOfCountries() {
 function createSelectElement(responseJson) {
   clearResults();
   clearGraph();
-  // console.log(responseJson);
-  // let arrayOfCountries = [];
-  for (let i = 0; i < responseJson.length; i++) {
-    arrayOfCountries.push(responseJson[i].Country);
-    // arrayOfSlugs.push(responseJson[i].Slug);
-  }
-  arrayOfCountries.sort();
-  console.log(arrayOfCountries);
+  // for (let i = 0; i < responseJson.length; i++) {
+  //   arrayOfCountries.push(responseJson[i].Country);
+  // }
+  // arrayOfCountries.sort();
+  // console.log(arrayOfCountries);
 
-  function turnArrayOfCountriesIntoListOfCountries(arrayOfCountries) {
-    function searchForSlug(nameKey, myArray) {
-      for (let j = 0; j < myArray.length; j++) {
-        if (myArray[j].Country === nameKey) {
-          return myArray[j].Slug;
-        }
-      }
-    }
-    for (let i = 0; i < arrayOfCountries.length; i++) {
-      let countryValue = searchForSlug(arrayOfCountries[i], responseJson);
-      // console.log(countryValue);
-      // console.log(responseJson);
-      $('#countries').append(`<option value="${countryValue}">${arrayOfCountries[i]}</option>`);
-    }
-    }
-    turnArrayOfCountriesIntoListOfCountries(arrayOfCountries);
+  // function turnArrayOfCountriesIntoListOfCountries(arrayOfCountries) {
+  //   function searchForSlug(nameKey, myArray) {
+  //     for (let j = 0; j < myArray.length; j++) {
+  //       if (myArray[j].Country === nameKey) {
+  //         return myArray[j].Slug;
+  //       }
+  //     }
+  //   }
+  //   for (let i = 0; i < arrayOfCountries.length; i++) {
+  //     let countryValue = searchForSlug(arrayOfCountries[i], responseJson);
+  //     $('#countries').append(`<option value="${countryValue}">${arrayOfCountries[i]}</option>`);
+  //   }
+  //   }
+  //   turnArrayOfCountriesIntoListOfCountries(arrayOfCountries);
   }
 
  
