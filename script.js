@@ -25,8 +25,20 @@ function clearGraph() {
 function getListOfCountries() {
   fetch('https://api.covid19api.com/countries')
   .then(response => response.json())
-  // .then(responseJson => console.log(responseJson))
-  .then(responseJson => createSelectElement(responseJson));
+  .then(responseJson => {
+    const sortedCountries = responseJson.sort(function compare(countryA, countryB) {
+      if (countryA.Country < countryB.Country) {
+        return -1;
+      }
+      else if (countryA.Country > countryB.Country) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    });
+    createSelectElement(sortedCountries);
+  });
 }
 
 function createSelectElement(responseJson) {
@@ -87,12 +99,12 @@ function createSelectElement(responseJson) {
     for (let l = 0; l < responseJsonCases.length; l++) {
     graphDataSetsCases.push(responseJsonCases[l].Confirmed);
     }
-    console.log(graphDataDates);
-    console.log(graphDataSetsCases);
+    console.log("graphDataDates", graphDataDates);
+    console.log("graphDataSetsCases", graphDataSetsCases);
   }
 
   function displayGraph() {
-    console.log(graphDataDates.toString());
+    console.log(graphDataDates.map(date => toDateString(date)).join());
     console.log(graphDataSetsCases.toString());
     
     // console.log(graphURL + graphDataDates);
