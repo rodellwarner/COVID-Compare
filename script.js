@@ -1,12 +1,8 @@
 "use strict"
 
-let arrayOfCountries = [];
 const URL = "https://api.covid19api.com/live/country"
 
 const graphURL = "https://quickchart.io/chart?c={type:'line',data:{labels:"
-
-let graphDataDates = [];
-let graphDataSetsCases = [];
 
 function setInitialConditions() {
   $('#selectCountryForm').show();
@@ -52,37 +48,42 @@ function createSelectElement(responseJson) {
     $('#selectCountryForm').submit(function() {
       event.preventDefault();
       getCovidData();
-      displayGraph();
     });
   }
 
   function getCovidData() {
     fetch(URL + '/' + `${$("#countries").val()}` + '/status/' + `${$("#dataType").val()}` + '/date/' + `${$("#afterDate").val()}` + 'T00:00:00Z')
     .then(response => response.json())
-    .then(responseJsonCases => console.log(responseJsonCases))
-    // .then(responseJsonCases => aggregateGraphInfo(responseJsonCases))
+    .then(responseJsonCovidData => showGraph(responseJsonCovidData))
   }
 
-  function aggregateGraphInfo(responseJsonCases) {
-    console.log(responseJsonCases);
-    for (let k = 0; k < responseJsonCases.length; k++) {
-      graphDataDates.push(responseJsonCases[k].Date);
-    }
-    for (let l = 0; l < responseJsonCases.length; l++) {
-    graphDataSetsCases.push(responseJsonCases[l].Confirmed);
-    }
-    console.log("graphDataDates", graphDataDates);
-    console.log("graphDataSetsCases", graphDataSetsCases);
+  function showGraph(responseJsonCovidData) {
+    let datesForGraphs = [];
+    let dataSetsForGraph = [];
+    const separateOutDatesAndDatasets = responseJsonCovidData.forEach(element => {
+      datesForGraphs.push(element.Date);
+      if ($("#dataType").val() === 'confirmed') {
+        dataSetsForGraph.push(element.Confirmed);
+      }
+      else if ($("#dataType").val() === 'recovered') {
+        dataSetsForGraph.push(element.Recovered);
+      }
+      else if ($("#dataType").val() === 'deaths') {
+        dataSetsForGraph.push(element.Deaths);
+      }
+    }); 
+
+    console.log("datesForGraphs", datesForGraphs);
+    console.log("dataSetsForGraph", dataSetsForGraph);
+
+
+    console.log(datesForGraphs.map(date => toDateString(date)).join());
+    console.log(dataSetsForGraph.toString());
+
   }
 
-  function displayGraph() {
-    console.log(graphDataDates.map(date => toDateString(date)).join());
-    console.log(graphDataSetsCases.toString());
     
-    // console.log(graphURL + graphDataDates);
-  }
-
-
+  
 
 
 function handleSearchCovid19Data() {
