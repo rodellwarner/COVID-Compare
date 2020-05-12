@@ -6,7 +6,7 @@ const graphURL = "https://quickchart.io/chart?c={type:'line',data:{labels:["
 
 function setInitialConditions() {
   $('#selectCountryForm').show();
-  $('#graphDisplay').show();
+  $('#graphDisplay').hide();
 }
 
 function clearResults() {
@@ -49,6 +49,7 @@ function createSelectElement(responseJson) {
     $('#selectCountryForm').submit(function() {
       event.preventDefault();
       getCovidData();
+      clearGraph();
     });
   }
 
@@ -59,6 +60,7 @@ function createSelectElement(responseJson) {
   }
 
   function showGraph(responseJsonCovidData) {
+
     let datesForGraphs = [];
     let dataSetsForGraph = [];
     const separateOutDatesAndDatasets = responseJsonCovidData.forEach(element => {
@@ -96,9 +98,10 @@ function createSelectElement(responseJson) {
 
    
 
-    let imageURL = graphURL + finalDates + '], datasets:[{label:\'' + `${$("#dataType").val()}` + '\', data:[' + finalNumbers + '],fill:\'false\'}]}}'
+    let imageURL = `${graphURL + finalDates}], datasets:[{label:'${`${$("#dataType").val()}`}', data:[${finalNumbers}],fill:'false'}]}}`
 
-    
+    $('#graphDisplay').append('<img src="' + imageURL + '">');
+    $('#graphDisplay').show();
 
     console.log(imageURL);
 
