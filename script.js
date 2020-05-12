@@ -2,10 +2,11 @@
 
 const URL = "https://api.covid19api.com/live/country"
 
-const graphURL = "https://quickchart.io/chart?c={type:'line',data:{labels:"
+const graphURL = "https://quickchart.io/chart?c={type:'line',data:{labels:["
 
 function setInitialConditions() {
   $('#selectCountryForm').show();
+  $('#graphDisplay').show();
 }
 
 function clearResults() {
@@ -73,12 +74,35 @@ function createSelectElement(responseJson) {
       }
     }); 
 
-    console.log("datesForGraphs", datesForGraphs);
-    console.log("dataSetsForGraph", dataSetsForGraph);
+    
+    let finalDates = [];
+    function datesForGraphFormatted(arrayOfDates) {
+      (arrayOfDates).forEach(date => {
+        finalDates.push(`'${date}'`)
+      });
+    }
+    datesForGraphFormatted(datesForGraphs);
+    console.log(finalDates);
 
 
-    console.log(datesForGraphs.map(date => toDateString(date)).join());
-    console.log(dataSetsForGraph.toString());
+    let finalNumbers = [];
+    function numbersOfCasesForGraphFormatted(arrayOfNumbersOfCases) {
+      arrayOfNumbersOfCases.forEach(numberOfCases => {
+        finalNumbers.push(`'${numberOfCases}'`)
+      });
+    }
+    numbersOfCasesForGraphFormatted(dataSetsForGraph);
+    console.log(finalNumbers);
+
+   
+
+    let imageURL = graphURL + finalDates + '], datasets:[{label:\'' + `${$("#dataType").val()}` + '\', data:[' + finalNumbers + '],fill:\'false\'}]}}'
+
+    
+
+    console.log(imageURL);
+
+    // console.log(datesForGraphs.map(date => toDateString(date)).join());
 
   }
 
