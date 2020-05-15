@@ -11,19 +11,17 @@
 
   <form id="selectCountryForm">
     <select id="countries" name="countries" required></select>
+    <select id="countries2" name="countries2" required></select>
     <br><br><br>
     <select id="dataType" name="dataType" required>
-      <option value="confirmed">confirmed cases</option>
-      <option value="recovered">recovered cases</option>
-      <option value="deaths">deaths</option>
+      <option value="infected">infected</option>
+      <option value="deceased">deceased</option>
     </select>
     <br><br><br>
-    <label for="afterDate">From:</label>
-    <input type="date" name="afterDate" id="afterDate" value="2020-05-01" required>
     <input type="submit" id="submitButton" value="Submit">
   </form>
 
-  <section id='selectedCountryName' class='hidden'></section>
+  <section id="selectedCountryName" class="hidden"></section>
 
   <section id="graphDisplay"></section>
 
