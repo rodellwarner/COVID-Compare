@@ -8,7 +8,7 @@ let STORE = [];
 
 function setInitialConditions() {
   $('#selectCountryForm').show();
-  $('#graphDisplay').hide();
+  // $('#graphDisplay').hide();
 }
 
 function clearResults() {
@@ -57,12 +57,12 @@ function createSelectElement(sortedCountries) {
 }
 
 function handleSubmitForm() {
-    // console.log(STORE);
-    $('#selectCountryForm').submit(function() {
-      event.preventDefault();
-      getCovidData();
-      clearGraph();
-    });
+  $('#selectCountryForm').submit(function() {
+    clearGraph();
+    event.preventDefault();
+    getCovidData();
+    // clearGraph();
+  });
 }
 
 function getCovidData() {
@@ -82,7 +82,7 @@ function getCovidData() {
 
 function showGraph(object1, object2) {
 
-  let numbersDeceased = [object1[0].deceased, object2[0].deceased];
+  let numbersDeceased = `%27${object1[0].deceased}%27,%27${object2[0].deceased}%27`;
   console.log('numbersDeceased', numbersDeceased);
 
   let numbersInfected = [object1[0].infected, object2[0].infected];
@@ -94,18 +94,21 @@ function showGraph(object1, object2) {
   let countryNames = `%27${object1[0].country}%27,%27${object2[0].country}%27`;
   console.log('countrynames', countryNames);
 
-  console.log('country1', object1[0].country);
-
  
   
+  let imageURL = `https://quickchart.io/chart?c={type:%27bar%27,data:{labels:[${countryNames}],datasets:[{label:%27Infected%27,data:[${numbersInfectedJoined}]},{label:%27Deceased%27,data:[${numbersDeceased}]}]}}`
   
 
-  let imageURL = `https://quickchart.io/chart?c={type:%27bar%27,data:{labels:[${countryNames}],datasets:[{label:%27Infected%27,data:[${numbersInfectedJoined}]}]}}`
+  // let imageURL = `https://quickchart.io/chart?c={type:%27bar%27,data:{labels:[${countryNames}],datasets:[{label:%27Infected%27,data:[${numbersInfectedJoined}]}]}}`
 
   
-  console.log(encodeURIComponent(imageURL));
+  // console.log(encodeURIComponent(imageURL));
 
   console.log(imageURL);
+
+
+  $('#graphDisplay').append(`<img src=${imageURL}>`);
+  $('#graphDisplay').show();
   
 }
 
