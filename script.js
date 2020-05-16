@@ -1,8 +1,8 @@
 "use strict"
 
-const URL = "https://api.covid19api.com/live/country"
+// const URL = "https://api.covid19api.com/live/country"
 
-const graphURL = "https://quickchart.io/chart?c={type:'bar',data:{labels:["
+// const graphURL = "https://quickchart.io/chart?c={type:'bar',data:{labels:["
 
 let STORE = [];
 
@@ -88,17 +88,26 @@ function showGraph(object1, object2) {
   let numbersInfected = [object1[0].infected, object2[0].infected];
   console.log('numbersInfected', numbersInfected)
 
-  let countryNames = ['\'' + object1[0].country + '\'', '\'' + object2[0].country + '\''];
+  let numbersInfectedJoined = numbersInfected.join();
+  console.log(numbersInfectedJoined);
+
+  let countryNames = `%27${object1[0].country}%27,%27${object2[0].country}%27`;
   console.log('countrynames', countryNames);
 
   console.log('country1', object1[0].country);
+
+ 
+  
   
 
-  let imageURL = `${graphURL + countryNames}` + '],datasets:[{label:\'Infected\',data:[' + `${numbersInfected}` + ']}]}}'
+  let imageURL = `https://quickchart.io/chart?c={type:%27bar%27,data:{labels:[${countryNames}],datasets:[{label:%27Infected%27,data:[${numbersInfectedJoined}]}]}}`
+
   
+  console.log(encodeURIComponent(imageURL));
+
   console.log(imageURL);
   
-
+}
 
 
 //   fetch(URL + '/' + `${$("#countries").val()}` + '/status/' + `${$("#dataType").val()}` + '/date/' + `${$("#afterDate").val()}` + 'T00:00:00Z')
@@ -152,7 +161,7 @@ function showGraph(object1, object2) {
 //   $('#graphDisplay').show();
 
 
-}
+
 
  
 
