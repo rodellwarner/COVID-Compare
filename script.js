@@ -2,6 +2,10 @@
 
 let STORE = [];
 
+const apiKey = "7389ed1c464847618909833f40f394de"
+const newsURL = "https://newsapi.org/v2/everything?"
+
+
 function setInitialConditions() {
   $('#selectCountryForm').show();
 }
@@ -63,6 +67,7 @@ function getCovidData() {
   let chosenObject1 = STORE.filter(object => object.country === country1);
   let chosenObject2 = STORE.filter(object => object.country === country2);
   showGraph(chosenObject1, chosenObject2);
+  prepareNews(chosenObject1, chosenObject2);
 }
 
 function showGraph(object1, object2) {
@@ -86,6 +91,24 @@ function showGraph(object1, object2) {
   $('#graphDisplay').show();
   $('#statsDetails2').append(`<br>last updated = ${object1[0].lastUpdatedApify}`);
 }
+
+
+function prepareNews(objectA, objectB) {
+  console.log("objectA", objectA, "objectB", objectB);
+  let firstCountry = objectA[0].country;
+  console.log("firstCountry", firstCountry);
+  let secondCountry = objectB[0].country;
+  console.log("secondCountry", secondCountry);
+
+  fetch(`https://newsapi.org/v2/everything?apiKey=7389ed1c464847618909833f40f394de&language=en&q="+${firstCountry}""+coronavirus"`)
+  .then((response) => response.json())
+  .then(responseJson => showNews(responseJson));
+}
+
+function showNews(newsData) {
+  console.log(newsData);
+}
+
 
 function handleSearchCovid19Data() {
   setInitialConditions();
