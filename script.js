@@ -6,9 +6,9 @@ const apiKey = "7389ed1c464847618909833f40f394de"
 const newsURL = "https://newsapi.org/v2/everything?"
 
 
-function setInitialConditions() {
-  $('#selectCountryForm').show();
-}
+// function setInitialConditions() {
+//   $('#selectCountryForm').show();
+// }
 
 function clearResults() {
   $('#countries').empty();
@@ -94,7 +94,7 @@ function showGraph(object1, object2) {
 
 
 function prepareNews(objectA, objectB) {
-  console.log("objectA", objectA, "objectB", objectB);
+  // console.log("objectA", objectA, "objectB", objectB);
   let firstCountry = objectA[0].country;
   console.log("firstCountry", firstCountry);
   let secondCountry = objectB[0].country;
@@ -102,15 +102,13 @@ function prepareNews(objectA, objectB) {
 
   fetch(`https://newsapi.org/v2/everything?apiKey=7389ed1c464847618909833f40f394de&language=en&q="+${firstCountry}""+coronavirus"`)
   .then((response) => response.json())
-  // .then(responseJson => showNews(responseJson));
   .then(responseJson => {
     let newsObjectForFirstCountry = responseJson;
     console.log(newsObjectForFirstCountry);
-    fetch(`https://newsapi.org/v2/everything?apiKey=7389ed1c464847618909833f40f394de&language=en&q="+${secondCountry}""+coronavirus"`)
+    fetch(`https://newsapi.org/v2/everything?apiKey=7389ed1c464847618909833f40f394de&language=en&q="+${secondCountry}""+coronavirus""+COVID-19"`)
     .then((response) => response.json())
     .then(responseJsonB => {
       let newsObjectForSecondCountry = responseJsonB;
-      console.log(newsObjectForSecondCountry);
       showNews(newsObjectForFirstCountry, newsObjectForSecondCountry);
     })
   })
@@ -118,11 +116,11 @@ function prepareNews(objectA, objectB) {
 
 function showNews(newsObject1, newsObject2) {
   console.log(newsObject1, newsObject2);
+  $("#newsDisplay").append(`${newsObject1.articles[0].title}<br>${newsObject1.articles[1].title}<br>${newsObject1.articles[2].title}`);
 }
 
 
 function handleSearchCovid19Data() {
-  setInitialConditions();
   getListOfCountries();
   handleSubmitForm();
 }
