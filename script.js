@@ -100,25 +100,44 @@ function prepareNews(objectA, objectB) {
   let secondCountry = objectB[0].country;
   console.log("secondCountry", secondCountry);
 
-  fetch(`https://newsapi.org/v2/everything?apiKey=7389ed1c464847618909833f40f394de&language=en&q="+${firstCountry}""+coronavirus"`)
+  fetch(`https://gnews.io/api/v3/search?q=${firstCountry}+coronavirus&token=7a4c334a3321ea87ad9b31418ac622bb`)
   .then((response) => response.json())
   .then(responseJson => {
     let newsObjectForFirstCountry = responseJson;
     console.log(newsObjectForFirstCountry);
-    fetch(`https://newsapi.org/v2/everything?apiKey=7389ed1c464847618909833f40f394de&language=en&q="+${secondCountry}""+coronavirus""+COVID-19"`)
+    fetch(`https://gnews.io/api/v3/search?q=${secondCountry}+coronavirus+COVID-19&token=7a4c334a3321ea87ad9b31418ac622bb`)
     .then((response) => response.json())
     .then(responseJsonB => {
       let newsObjectForSecondCountry = responseJsonB;
       showNews(newsObjectForFirstCountry, newsObjectForSecondCountry);
     })
   })
+
+  // Promise.all([
+  //   fetch(`https://gnews.io/api/v3/search?q=${firstCountry}+coronavirus&token=7a4c334a3321ea87ad9b31418ac622bb`),
+  //   fetch(`https://gnews.io/api/v3/search?q=${secondCountry}+coronavirus&token=7a4c334a3321ea87ad9b31418ac622bb`)
+  // ])
+  //   .then(function (responses) {
+  //     // Get a JSON object from each of the responses
+  //     return responses.map(function (response) {
+  //       return response.json();
+  //     });
+  //   }).then(function (data) {
+  //     // Log the data to the console
+  //     // You would do something with both sets of data here
+  //      console.log(data);
+  //      showNews(data);
+  //   }).catch(function (error) {
+  //     // if there's an error, log it
+  //     console.log(error);
+  //   });
 }
 
 function showNews(newsObject1, newsObject2) {
   console.log(newsObject1, newsObject2);
-  $("#newsDisplay").append(`${newsObject1.articles[0].title}<br>${newsObject1.articles[1].title}<br>${newsObject1.articles[2].title}`);
+  $("#newsDisplay").append(`<a href=${newsObject1.articles[0].url}>${newsObject1.articles[0].title}</a><br><br><a href=${newsObject1.articles[1].url}>${newsObject1.articles[1].title}</a><br><br><a href=${newsObject1.articles[2].url}>${newsObject1.articles[2].title}</a><br><br><br><br>`);
+  $("#newsDisplay").append(`<a href=${newsObject2.articles[0].url}>${newsObject2.articles[0].title}</a><br><br><a href=${newsObject2.articles[1].url}>${newsObject2.articles[1].title}</a><br><br><a href=${newsObject1.articles[0].url}>${newsObject2.articles[2].title}</a>`);
 }
-
 
 function handleSearchCovid19Data() {
   getListOfCountries();
