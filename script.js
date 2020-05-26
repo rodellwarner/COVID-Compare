@@ -89,7 +89,7 @@ function showGraph(object1, object2) {
   $('#statsDetails').append(`${country2} deceased = ${numbersDeceased[1]} <br>`)
   $('#graphDisplay').append(`<img src=${imageURL}>`);
   $('#graphDisplay').show();
-  $('#statsDetails2').append(`<br>last updated = ${object1[0].lastUpdatedApify}`);
+  $('#statsDetails2').append(`<br>last updated = ${object1[0].lastUpdatedApify.slice(0, 10)}`);
 }
 
 

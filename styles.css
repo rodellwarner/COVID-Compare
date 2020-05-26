@@ -35,18 +35,19 @@ section.h2 {
   color: rgb(70, 70, 70);
 }
 
-select {
+/* select {
   -webkit-appearance: push-button;
   -moz-appearance: none;
-  appearance: none;       /* Remove default arrow */
-  /* background-image: url(...);   Add custom arrow */
+  appearance: none;       Remove default arrow
+  background-image: url(...);   Add custom arrow
   font-family: 'Merriweather', serif;
   font-weight: 300;
   font-size: 10pt;
   padding: 5px;
   text-align-last: center;
   border-color: rgb(70, 70, 70);
-}
+} */
+
 
 #submitButton {
   background-color: transparent;
