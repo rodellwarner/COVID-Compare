@@ -9,30 +9,42 @@
   <title>Coronavirus (COVID-19) Statistics Database</title>
 </head>
 <body>
-  <section class="h1">Compare Coronavirus (COVID-19) Stats By Country & See Related News</section>
+  <div class="flexContainer">
+    <div class="row">
+      <div class="column">
+        <div class="left-column">
+          <section class="h1">Compare Coronavirus (COVID-19) Stats By Country & See Related News</section>
 
-  <section class="h2">Select two countries to compare:</section>
+          <section class="h2">Select two countries to compare:</section>
 
-  <form id="selectCountryForm">
-    <label for="countries">Select Country A</label>
-    <select id="countries" name="countries" required></select><br><br>
-    <label for="countries2">Select Country B</label>
-    <select id="countries2" name="countries2" required></select>
-    <br><br><br>
-    <input type="submit" id="submitButton" value="Submit">
-  </form>
+          <form id="selectCountryForm">
+            <label for="countries">Select Country A</label>
+            <select id="countries" name="countries" required></select><br><br>
+            <label for="countries2">Select Country B</label>
+            <select id="countries2" name="countries2" required></select>
+            <br><br><br>
+            <input type="submit" id="submitButton" value="Submit">
+          </form>
 
-  <section id="statsDetails"></section>
-  <section id="graphDisplay"></section>
-  <section id="statsDetails2"></section>
+        </div> 
+     </div>  
+     
+     <div class="column">
+        <div class="right-column">
+          <section id="statsDetails"></section>
+          <section id="graphDisplay"></section>
+          <section id="statsDetails2"></section>
 
-  <section id="newsDisplay"></section>
+          <section id="newsDisplay"></section>
+        </div> 
+     </div>   
+        
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
   
-  <script
-  src="https://code.jquery.com/jquery-3.5.0.js"
-  integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
-  crossorigin="anonymous"></script>
+  <script src="script.js"></script> 
 
-  <script src="script.js"></script>
 </body>
 </html>

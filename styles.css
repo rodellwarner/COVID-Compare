@@ -220,9 +220,32 @@ a:active {
     font-weight: 300;
     color: rgb(70, 70, 70);
   }
+
+  .flexContainer {
+    margin: 15px;
+    background-color: transparent;
+  }
   
-  .hidden {
-    display: none;
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+  }
+  
+  .left-column {
+    background-color: transparent;
+  }
+  
+  .right-column {
+    background-color: transparent;
   }
   
   #graphDisplay img {
