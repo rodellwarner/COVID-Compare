@@ -3,12 +3,6 @@
 let STORE = [];
 
 const apiKey = "7389ed1c464847618909833f40f394de"
-const newsURL = "https://newsapi.org/v2/everything?"
-
-
-// function setInitialConditions() {
-//   $('#selectCountryForm').show();
-// }
 
 function clearResults() {
   $('#countries').empty();
@@ -88,7 +82,6 @@ function showGraph(object1, object2) {
   $('#statsDetails').append(`<br>${country1} deceased: ${numbersDeceased[0]} <br>`)
   $('#statsDetails').append(`${country2} deceased: ${numbersDeceased[1]} <br>`)
   $('#graphDisplay').append(`<img src=${imageURL}>`);
-  $('#graphDisplay').show();
   $('#statsDetails2').append(`<br>last updated = ${object1[0].lastUpdatedApify.slice(0, 10)}`);
 }
 
@@ -135,9 +128,20 @@ function prepareNews(objectA, objectB) {
 
 function showNews(newsObject1, newsObject2) {
   console.log(newsObject1, newsObject2);
-  $("#newsDisplay").append(`<a href=${newsObject1.articles[0].url}>${newsObject1.articles[0].title}</a><br><br><a href=${newsObject1.articles[1].url}>${newsObject1.articles[1].title}</a><br><br><a href=${newsObject1.articles[2].url}>${newsObject1.articles[2].title}</a><br><br><br><br>`);
-  $("#newsDisplay").append(`<a href=${newsObject2.articles[0].url}>${newsObject2.articles[0].title}</a><br><br><a href=${newsObject2.articles[1].url}>${newsObject2.articles[1].title}</a><br><br><a href=${newsObject1.articles[0].url}>${newsObject2.articles[2].title}</a>`);
+
+  $("#newsDisplay").append(`<a href=${newsObject1.articles[0].url}>${newsObject1.articles[0].title}</a><br><br>`);
+  $("#newsDisplay").append(`<a href=${newsObject1.articles[1].url}>${newsObject1.articles[1].title}</a><br><br>`);
+  $("#newsDisplay").append(`<a href=${newsObject1.articles[2].url}>${newsObject1.articles[2].title}</a><br><br><br><br>`);
+  
+  $("#newsDisplay").append(`<a href=${newsObject2.articles[0].url}>${newsObject2.articles[0].title}</a><br><br>`);
+  $("#newsDisplay").append(`<a href=${newsObject2.articles[1].url}>${newsObject2.articles[1].title}</a><br><br>`);
+  $("#newsDisplay").append(`<a href=${newsObject1.articles[0].url}>${newsObject2.articles[2].title}</a>`);
 }
+
+// function findAndDisplayArticleImage(newsObject, x) {
+//   console.log("URL for image: ", newsObject.articles[x].image)
+//   $("#newsDisplay").append(`<img src=${newsObject.articles[x].image}`);
+// }
 
 function handleSearchCovid19Data() {
   getListOfCountries();

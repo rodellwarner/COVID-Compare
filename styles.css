@@ -5,7 +5,7 @@
 body {
   text-align: center;
   background-color: whitesmoke;
-  font-family: 'Merriweather', serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   color: rgb(70, 70, 70);
 }
@@ -51,15 +51,17 @@ section.h2 {
 } */
 
 select {
+  text-align: justify;
   text-align-last: center;
   font-size: 16pt;
+  border-radius: 5px;
 }
 
 #submitButton {
   background-color: transparent;
-  font-family: 'Merriweather', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 16pt;
-  border-radius: 0px;
+  border-radius: 5px;
   padding: 5px;
   border-color: rgb(70, 70, 70);
   width: 55%;
@@ -119,7 +121,7 @@ a:active {
   }
   
   #graphDisplay img {
-    width: 100%;
+    width: 70%;
     padding-top: 30px;
     padding-bottom: 5px;
   }
@@ -224,7 +226,7 @@ a:active {
   }
   
   #graphDisplay img {
-    width: 100%;
+    width: 50%;
     padding-top: 30px;
     padding-bottom: 5px;
   }
