@@ -83,10 +83,10 @@ function showGraph(object1, object2) {
   // console.log(encodeURIComponent(imageURL));
   let imageURLBeforeReplace = `https://quickchart.io/chart?c={type:%27bar%27,data:{labels:[${countryNames}],datasets:[{label:%27Infected%27,data:[${numbersInfectedJoined}]},{label:%27Deceased%27,data:[${numbersDeceased}]}]}}`
   let imageURL = imageURLBeforeReplace.replace(/\s+/g, '');
-  $('#statsDetails').append(`<br>${country1} infected = ${numbersInfected[0]} <br>`);
-  $('#statsDetails').append(`${country2} infected = ${numbersInfected[1]} <br>`);
-  $('#statsDetails').append(`<br>${country1} deceased = ${numbersDeceased[0]} <br>`)
-  $('#statsDetails').append(`${country2} deceased = ${numbersDeceased[1]} <br>`)
+  $('#statsDetails').append(`<br>${country1} infected: ${numbersInfected[0]} <br>`);
+  $('#statsDetails').append(`${country2} infected: ${numbersInfected[1]} <br>`);
+  $('#statsDetails').append(`<br>${country1} deceased: ${numbersDeceased[0]} <br>`)
+  $('#statsDetails').append(`${country2} deceased: ${numbersDeceased[1]} <br>`)
   $('#graphDisplay').append(`<img src=${imageURL}>`);
   $('#graphDisplay').show();
   $('#statsDetails2').append(`<br>last updated = ${object1[0].lastUpdatedApify.slice(0, 10)}`);
