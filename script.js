@@ -2,8 +2,6 @@
 
 let STORE = [];
 
-const apiKey = "7389ed1c464847618909833f40f394de"
-
 function clearResults() {
   $('#countries').empty();
 }
@@ -15,6 +13,10 @@ function clearGraph() {
 function clearStatsDetails() {
   $('#statsDetails').empty();
   $('#statsDetails2').empty();
+}
+
+function clearNewsDisplay() {
+  $('#newsDisplay').empty();
 }
 
 function getListOfCountries() {
@@ -48,6 +50,7 @@ function createSelectElement(sortedCountries) {
 
 function handleSubmitForm() {
   $('#selectCountryForm').submit(function() {
+    clearNewsDisplay();
     clearGraph();
     clearStatsDetails();
     event.preventDefault();
@@ -67,14 +70,10 @@ function getCovidData() {
 function showGraph(object1, object2) {
   let country1 = `${$("#countries").val()}`;
   let country2 = `${$("#countries2").val()}`;
-  // let numbersDeceased = `%27${object1[0].deceased}%27,%27${object2[0].deceased}%27`;
-  // console.log('numbersDeceased', numbersDeceased);
   let numbersDeceased = [object1[0].deceased,object2[0].deceased];
   let numbersInfected = [object1[0].infected, object2[0].infected];
   let numbersInfectedJoined = numbersInfected.join();
   let countryNames = `%27${object1[0].country}%27,%27${object2[0].country}%27`;
-  // let imageURLBeforeReplace = `https://quickchart.io/chart?c={type:%27bar%27,data:{labels:[${countryNames}],datasets:[{label:%27Infected%27,data:[${numbersInfectedJoined}]}]}}`
-  // console.log(encodeURIComponent(imageURL));
   let imageURLBeforeReplace = `https://quickchart.io/chart?c={type:%27bar%27,data:{labels:[${countryNames}],datasets:[{label:%27Infected%27,data:[${numbersInfectedJoined}]},{label:%27Deceased%27,data:[${numbersDeceased}]}]}}`
   let imageURL = imageURLBeforeReplace.replace(/\s+/g, '');
   $('#statsDetails').append(`<br><b>${country1}</b> Infected: ${numbersInfected[0]} <br>`);
@@ -82,12 +81,10 @@ function showGraph(object1, object2) {
   $('#statsDetails').append(`<br><b>${country1}</b> Deceased: ${numbersDeceased[0]} <br>`)
   $('#statsDetails').append(`<b>${country2}</b> Deceased: ${numbersDeceased[1]} <br>`)
   $('#graphDisplay').append(`<img src=${imageURL}>`);
-  $('#statsDetails2').append(`<br>last updated = ${object1[0].lastUpdatedApify.slice(0, 10)}`);
+  $('#statsDetails2').append(`<br>Last Updated = ${object1[0].lastUpdatedApify.slice(0, 10)}`);
 }
 
-
 function prepareNews(objectA, objectB) {
-  // console.log("objectA", objectA, "objectB", objectB);
   let firstCountry = objectA[0].country;
   let secondCountry = objectB[0].country;
 
@@ -100,7 +97,9 @@ function prepareNews(objectA, objectB) {
         return response.json();
       }));
     }).then(function (data) {
+       $("#newsDisplay").append(`<b>Latest COVID-19 News Articles For ${firstCountry}</b><br><br>`);
        showNews(data[0].articles.slice(0, 3));
+       $("#newsDisplay").append(`<br><b>Latest COVID-19 News Articles For ${secondCountry}</b><br><br>`);
        showNews(data[1].articles.slice(0, 3));
     }).catch(function (error) {
       console.log(error);
@@ -108,11 +107,9 @@ function prepareNews(objectA, objectB) {
 }
 
 function showNews(articles) {
-  // console.log("articles", articles);
   const articleElements = articles.map(function(article) {
-    return `<a href="${article.url}">${article.title}</a><br><br>`;
+    return `<a href="${article.url}"target="_blank">${article.title}</a><br><br>`;
   });
-  console.log("articleElements", articleElements);
   $("#newsDisplay").append(articleElements);
 
 }
