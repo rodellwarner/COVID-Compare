@@ -89,53 +89,32 @@ function showGraph(object1, object2) {
 function prepareNews(objectA, objectB) {
   // console.log("objectA", objectA, "objectB", objectB);
   let firstCountry = objectA[0].country;
-  console.log("firstCountry", firstCountry);
   let secondCountry = objectB[0].country;
-  console.log("secondCountry", secondCountry);
 
-  fetch(`https://gnews.io/api/v3/search?q=${firstCountry}+coronavirus&token=7a4c334a3321ea87ad9b31418ac622bb`)
-  .then((response) => response.json())
-  .then(responseJson => {
-    let newsObjectForFirstCountry = responseJson;
-    console.log(newsObjectForFirstCountry);
-    fetch(`https://gnews.io/api/v3/search?q=${secondCountry}+coronavirus+COVID-19&token=7a4c334a3321ea87ad9b31418ac622bb`)
-    .then((response) => response.json())
-    .then(responseJsonB => {
-      let newsObjectForSecondCountry = responseJsonB;
-      showNews(newsObjectForFirstCountry, newsObjectForSecondCountry);
-    })
-  })
-
-  // Promise.all([
-  //   fetch(`https://gnews.io/api/v3/search?q=${firstCountry}+coronavirus&token=7a4c334a3321ea87ad9b31418ac622bb`),
-  //   fetch(`https://gnews.io/api/v3/search?q=${secondCountry}+coronavirus&token=7a4c334a3321ea87ad9b31418ac622bb`)
-  // ])
-  //   .then(function (responses) {
-  //     // Get a JSON object from each of the responses
-  //     return responses.map(function (response) {
-  //       return response.json();
-  //     });
-  //   }).then(function (data) {
-  //     // Log the data to the console
-  //     // You would do something with both sets of data here
-  //      console.log(data);
-  //      showNews(data);
-  //   }).catch(function (error) {
-  //     // if there's an error, log it
-  //     console.log(error);
-  //   });
+  Promise.all([
+    fetch(`https://gnews.io/api/v3/search?q=${firstCountry}+coronavirus&token=7a4c334a3321ea87ad9b31418ac622bb`),
+    fetch(`https://gnews.io/api/v3/search?q=${secondCountry}+coronavirus&token=7a4c334a3321ea87ad9b31418ac622bb`)
+  ])
+    .then(function (responses) {
+      return Promise.all(responses.map(function (response) {
+        return response.json();
+      }));
+    }).then(function (data) {
+       showNews(data[0].articles.slice(0, 3));
+       showNews(data[1].articles.slice(0, 3));
+    }).catch(function (error) {
+      console.log(error);
+    });
 }
 
-function showNews(newsObject1, newsObject2) {
-  console.log(newsObject1, newsObject2);
+function showNews(articles) {
+  // console.log("articles", articles);
+  const articleElements = articles.map(function(article) {
+    return `<a href="${article.url}">${article.title}</a><br><br>`;
+  });
+  console.log("articleElements", articleElements);
+  $("#newsDisplay").append(articleElements);
 
-  $("#newsDisplay").append(`<a href=${newsObject1.articles[0].url}>${newsObject1.articles[0].title}</a><br><br>`);
-  $("#newsDisplay").append(`<a href=${newsObject1.articles[1].url}>${newsObject1.articles[1].title}</a><br><br>`);
-  $("#newsDisplay").append(`<a href=${newsObject1.articles[2].url}>${newsObject1.articles[2].title}</a><br><br><br><br>`);
-  
-  $("#newsDisplay").append(`<a href=${newsObject2.articles[0].url}>${newsObject2.articles[0].title}</a><br><br>`);
-  $("#newsDisplay").append(`<a href=${newsObject2.articles[1].url}>${newsObject2.articles[1].title}</a><br><br>`);
-  $("#newsDisplay").append(`<a href=${newsObject1.articles[0].url}>${newsObject2.articles[2].title}</a>`);
 }
 
 // function findAndDisplayArticleImage(newsObject, x) {
