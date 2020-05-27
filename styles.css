@@ -11,6 +11,15 @@ body {
   padding: 20px;
 }
 
+#globeIcon1 {
+  width: 20vw;
+  padding-top: 20px;
+}
+
+#globeIcon2 {
+  display: none;
+}
+
 .hidden {
   display: none;
 }
@@ -22,7 +31,7 @@ body {
 }
 
 section.h1 {
-  margin-top: 40px;
+  margin-top: 20px;
   font-weight: 700;
   font-size: 14pt;
 }
@@ -105,6 +114,16 @@ a:active {
     color: rgb(70, 70, 70);
   }
 
+  #globeIcon1 {
+    display: none;
+  }
+  
+  #globeIcon2 {
+    display: inline-flex;
+    width: 10vw;
+    margin-top: 40px;
+  }
+
   .flexContainer {
     margin: 15px;
     background-color: transparent;
@@ -141,13 +160,13 @@ a:active {
   }
   
   section.h1 {
-    margin-top: 40px;
+    margin-top: 0px;
     font-weight: 700;
     font-size: 23pt;
   }
   
   section.h2 {
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 40px;
     font-size: 13pt;
   }
@@ -170,7 +189,7 @@ a:active {
     padding: 5px;
     border-color: rgb(70, 70, 70);
     width: 55%;
-    margin-top: 80px;
+    margin-top: 20px;
   }
   
   #newsDisplay {
@@ -225,6 +244,16 @@ a:active {
     color: rgb(70, 70, 70);
   }
 
+  #globeIcon1 {
+    display: none;
+  }
+  
+  #globeIcon2 {
+    display: inline-flex;
+    width: 5vw;
+    margin-top: 30px;
+  }
+
   .flexContainer {
     margin: 15px;
     background-color: transparent;
@@ -261,7 +290,6 @@ a:active {
   }
   
   section.h1 {
-    margin-top: 40px;
     font-weight: 700;
     font-size: 23pt;
   }
@@ -299,7 +327,7 @@ a:active {
   }
   
   #statsDetails {
-    margin-top: 40px;
+    margin-top: 0px;
     font-size: 15px;
   }
   
