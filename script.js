@@ -114,11 +114,6 @@ function showNews(articles) {
 
 }
 
-// function findAndDisplayArticleImage(newsObject, x) {
-//   console.log("URL for image: ", newsObject.articles[x].image)
-//   $("#newsDisplay").append(`<img src=${newsObject.articles[x].image}`);
-// }
-
 function handleSearchCovid19Data() {
   getListOfCountries();
   handleSubmitForm();
