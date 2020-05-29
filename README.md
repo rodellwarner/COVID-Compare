@@ -2,7 +2,7 @@
 "COVID Compare"
 
 <b>Link to live app:</b>
-https://thirteenzeros.github.io/COVID-Compare/
+https://rodellwarner.github.io/COVID-Compare/
 
 <b>Screenshot:</b>
 <img src="COVID-Compare-Screen_Shot_2020-05-27.png" alt="screenshot of app">
