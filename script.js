@@ -50,6 +50,7 @@ function createSelectElement(sortedCountries) {
 
 function handleSubmitForm() {
   $('#selectCountryForm').submit(function() {
+    $("#errorMessage").hide();
     clearNewsDisplay();
     clearGraph();
     clearStatsDetails();
