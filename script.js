@@ -74,13 +74,14 @@ function showGraph(object1, object2) {
   let numbersInfected = [object1[0].infected, object2[0].infected];
   let numbersInfectedJoined = numbersInfected.join();
   let countryNames = `%27${object1[0].country}%27,%27${object2[0].country}%27`;
-  let imageURLBeforeReplace = `https://quickchart.io/chart?c={type:%27bar%27,data:{labels:[${countryNames}],datasets:[{label:%27Infected%27,data:[${numbersInfectedJoined}]},{label:%27Deceased%27,data:[${numbersDeceased}]}]}}`
+  // let imageURLBeforeReplace = `https://quickchart.io/chart?c={type:%27bar%27,data:{labels:[${countryNames}],datasets:[{label:%27Infected%27,data:[${numbersInfectedJoined}]},{label:%27Deceased%27,data:[${numbersDeceased}]}]}}`
+  let imageURLBeforeReplace = `https://quickchart.io/chart?c=%7Btype:%27bar%27,data:%7Blabels:%5B${countryNames}%5D,datasets:%5B%7Blabel:%27Infected%27,data:%5B${numbersInfectedJoined}%5D%7D,%7Blabel:%27Deceased%27,data:%5B${numbersDeceased}%5D%7D%5D%7D%7D`
   let imageURL = imageURLBeforeReplace.replace(/\s+/g, '');
   $('#statsDetails').append(`<br><b>${country1}</b> Infected: ${numbersInfected[0]} <br>`);
   $('#statsDetails').append(`<b>${country2}</b> Infected: ${numbersInfected[1]} <br>`);
   $('#statsDetails').append(`<br><b>${country1}</b> Deceased: ${numbersDeceased[0]} <br>`)
   $('#statsDetails').append(`<b>${country2}</b> Deceased: ${numbersDeceased[1]} <br>`)
-  $('#graphDisplay').append(`<img src=${imageURL}>`);
+  $('#graphDisplay').append(`<img src=${imageURL} alt="bar chart showing coronavirus infections and deaths for the two selected countries">`);
   $('#statsDetails2').append(`<br>Last Updated = ${object1[0].lastUpdatedApify.slice(0, 10)}`);
 }
 

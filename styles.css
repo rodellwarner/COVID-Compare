@@ -103,9 +103,9 @@ a:active {
 
 
 
-/* MEDIUM - For device-widths no larger than 1024 and no smaller than 376px: */
+/* MEDIUM - For device-widths 800px to 1023px: */
 
-@media screen and (min-width: 376px) and (max-width: 1024px) {
+@media screen and (min-width: 800px) {
   body {
     text-align: center;
     background-color: whitesmoke;
@@ -233,9 +233,9 @@ a:active {
 
 
 
-/* LARGE - For device-widths 1025 and higher: */
+/* LARGE - For device-widths 1024 and higher: */
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1024px) {
   body {
     text-align: center;
     background-color: whitesmoke;
