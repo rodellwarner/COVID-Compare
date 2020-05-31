@@ -50,7 +50,8 @@ function createSelectElement(sortedCountries) {
 
 function handleSubmitForm() {
   $('#selectCountryForm').submit(function() {
-    $("#errorMessage").hide();
+    $('#countrySelectionNotification').hide();
+    $('#errorMessage').hide();
     clearNewsDisplay();
     clearGraph();
     clearStatsDetails();
@@ -62,10 +63,17 @@ function handleSubmitForm() {
 function getCovidData() {
   let country1 = `${$("#countries").val()}`;
   let country2 = `${$("#countries2").val()}`;
-  let chosenObject1 = STORE.filter(object => object.country === country1);
-  let chosenObject2 = STORE.filter(object => object.country === country2);
-  showGraph(chosenObject1, chosenObject2);
-  prepareNews(chosenObject1, chosenObject2);
+
+  if (country1 === country2) {
+    $('#countrySelectionNotification').show();
+  }
+
+  else {
+    let chosenObject1 = STORE.filter(object => object.country === country1);
+    let chosenObject2 = STORE.filter(object => object.country === country2);
+    showGraph(chosenObject1, chosenObject2);
+    prepareNews(chosenObject1, chosenObject2);
+  }
 }
 
 function showGraph(object1, object2) {
@@ -104,7 +112,7 @@ function prepareNews(objectA, objectB) {
        $("#newsDisplay").append(`<br><b>Latest COVID-19 News Articles For ${secondCountry}</b><br><br>`);
        showNews(data[1].articles.slice(0, 3));
     }).catch(function (error) {
-      $("#errorMessage").show();
+      $('#errorMessage').show();
       console.log(error);
     });
 }
@@ -118,7 +126,8 @@ function showNews(articles) {
 }
 
 function handleSearchCovid19Data() {
-  $("#errorMessage").hide();
+  $('#errorMessage').hide();
+  $('#countrySelectionNotification').hide();
   getListOfCountries();
   handleSubmitForm();
 }

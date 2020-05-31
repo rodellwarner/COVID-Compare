@@ -11,6 +11,25 @@ body {
   padding: 20px;
 }
 
+#countrySelectionNotificationContainer {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+#countrySelectionNotification {
+  width: 100%;
+  padding: 20px;
+  color: rgb(236, 54, 141);
+  background-color: transparent;
+  border: solid rgb(68, 3, 129) 1px;
+  border-radius: 5px;
+  font-weight: 300;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 #errorMessageContainer {
   text-align: center;
   display: flex;
@@ -133,6 +152,25 @@ a:active {
     color: rgb(70, 70, 70);
   }
 
+  #countrySelectionNotificationContainer {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+  
+  #countrySelectionNotification {
+    width: 100%;
+    padding: 20px;
+    color: rgb(236, 54, 141);
+    background-color: transparent;
+    border: solid rgb(68, 3, 129) 1px;
+    border-radius: 5px;
+    font-weight: 300;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
   #errorMessageContainer {
     text-align: center;
     display: flex;
@@ -227,7 +265,7 @@ a:active {
     padding: 5px;
     border-color: rgb(70, 70, 70);
     width: 55%;
-    margin-top: 20px;
+    margin-top: 0px;
   }
   
   #newsDisplay {
@@ -280,6 +318,25 @@ a:active {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     color: rgb(70, 70, 70);
+  }
+
+  #countrySelectionNotificationContainer {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+  
+  #countrySelectionNotification {
+    width: 100%;
+    padding: 20px;
+    color: rgb(236, 54, 141);
+    background-color: transparent;
+    border: solid rgb(68, 3, 129) 1px;
+    border-radius: 5px;
+    font-weight: 300;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   #errorMessageContainer {
@@ -375,7 +432,7 @@ a:active {
     padding: 5px;
     border-color: rgb(70, 70, 70);
     width: 55%;
-    margin-top: 80px;
+    margin-top: 0px;
   }
   
   #newsDisplay {

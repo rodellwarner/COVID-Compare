@@ -22,7 +22,12 @@
             <select id="countries" name="countries"></select><br><br>
             <label for="countries2">Select Country B</label>
             <select id="countries2" name="countries2"></select>
-            <br><br><br>
+
+            <div id="countrySelectionNotificationContainer">
+              <section id="countrySelectionNotification">Oops! You currently have the same country selected for Country A and Country B. Please select two different countries to compare.</section>
+            </div>
+
+            <br>
             <input type="submit" id="submitButton" value="Submit">
           </form>
 
@@ -33,7 +38,7 @@
         <div class="right-column">
           <img id="globeIcon2" src="rw_globe.gif" alt="spinning globe image">
           <div id="errorMessageContainer">
-            <section id="errorMessage">Oops! Something went wrong.</section>
+            <section id="errorMessage">Oops! Something went wrong when we tried to fetch the news. Please try clicking the submit button again.</section>
           </div>
           <section id="statsDetails"></section>
           <section id="graphDisplay"></section>
