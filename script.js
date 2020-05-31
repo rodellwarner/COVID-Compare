@@ -103,6 +103,7 @@ function prepareNews(objectA, objectB) {
        $("#newsDisplay").append(`<br><b>Latest COVID-19 News Articles For ${secondCountry}</b><br><br>`);
        showNews(data[1].articles.slice(0, 3));
     }).catch(function (error) {
+      $("#errorMessage").show();
       console.log(error);
     });
 }
@@ -116,6 +117,7 @@ function showNews(articles) {
 }
 
 function handleSearchCovid19Data() {
+  $("#errorMessage").hide();
   getListOfCountries();
   handleSubmitForm();
 }

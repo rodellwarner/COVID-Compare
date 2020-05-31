@@ -11,6 +11,25 @@ body {
   padding: 20px;
 }
 
+#errorMessageContainer {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+#errorMessage {
+  width: 60%;
+  padding: 20px;
+  color: red;
+  background-color: transparent;
+  border: solid red 2px;
+  border-radius: 5px;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 #globeIcon1 {
   width: 20vw;
   padding-top: 20px;
@@ -112,6 +131,25 @@ a:active {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     color: rgb(70, 70, 70);
+  }
+
+  #errorMessageContainer {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+  
+  #errorMessage {
+    width: 60%;
+    padding: 20px;
+    color: red;
+    background-color: transparent;
+    border: solid red 2px;
+    border-radius: 5px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   #globeIcon1 {
@@ -242,6 +280,25 @@ a:active {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     color: rgb(70, 70, 70);
+  }
+
+  #errorMessageContainer {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+  
+  #errorMessage {
+    width: 60%;
+    padding: 20px;
+    color: red;
+    background-color: transparent;
+    border: solid red 2px;
+    border-radius: 5px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   #globeIcon1 {
